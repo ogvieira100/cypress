@@ -118,8 +118,28 @@ input[type="radio"] {
     background-color: #d9d4e7;
 }
 
+.error-background{
+    background-color: #a786df;  
+}
+
 .error {
     background-color: #a786df;
+}
+
+.password-invalid{
+    background-color: #a786df;
+    color: #181818;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+}
+
+.login-error{
+    background-color: #a786df;
+    color: #181818;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
 }
 
 .success, .error {
