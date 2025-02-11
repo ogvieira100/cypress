@@ -28,7 +28,7 @@ document.querySelector('button[type="submit"][id="login"]').addEventListener('cl
         errorMessage.style.display = 'block'
         scroll(0,0)
         hideMessageAfterTimeout(errorMessage)
-        return
+        
 
      }
 
@@ -38,7 +38,7 @@ document.querySelector('button[type="submit"][id="login"]').addEventListener('cl
         errorMessage.style.display = 'block'
         scroll(0,0)
         hideMessageAfterTimeout(errorMessage)
-        return
+        
       }
       
       function hideMessageAfterTimeout(element) {

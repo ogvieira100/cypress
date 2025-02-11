@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
             height: 100vh;
             background-color: #f4f4f4;
         }
-
         .login-container {
             background: white;
             padding: 20px;
@@ -22,12 +20,11 @@
             border-radius: 5px;
             width: 300px;
             text-align: center;
+            position: relative;
         }
-
         .login-container h2 {
             margin-bottom: 20px;
         }
-
         .input-field {
             width: 100%;
             padding: 10px;
@@ -35,7 +32,6 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-
         .login-button {
             width: 100%;
             padding: 10px;
@@ -45,22 +41,35 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         .login-button:hover {
             background-color: #0056b3;
         }
+        .password-invalid{
+                display: none   ;
+        }
+        .login-error{
+             display: none   ;
+        }
+        .error-background {
+           
+            background-color: #a786df;  
+            color: red;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
     </style>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+   
 </head>
-
 <body>
-    <span class="error-background password-invalid">
-        <strong>Usuário ou senha inválidos!</strong>
-    </span>
-    <span class="error-background login-error">
-        <strong>Valide os campos obrigatórios!</strong>
-    </span>
     <div class="login-container">
+        <span class="error-background password-invalid">
+            <strong>Usuário ou senha inválidos!</strong>
+        </span>
+        <span class="error-background login-error">
+            <strong>Valide os campos obrigatórios!</strong>
+        </span>
         <h2>Login</h2>
         <form action="#" method="POST">
             <input type="text" id="login-txt" class="input-field" placeholder="Usuário" required>
@@ -70,5 +79,4 @@
     </div>
     <script src="script_login.js"></script>
 </body>
-
 </html>
