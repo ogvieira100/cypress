@@ -52,6 +52,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       
     cy.get('#file-upload')
       .as('fileUpload')     
+
     cy.get('button[type="submit"]') 
       .as('btnSubmit')    
   })
@@ -138,7 +139,23 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .uncheck()  
       .should('not.be.checked') 
 
+     cy.get('@fileUpload') 
+      .selectFile('cypress/fixtures/example.json') 
+      .should( input=>{
 
+          console.log(input)  
+          expect(input[0].files[0].name).to.eq('example.json')
+
+      })
+      
+      cy.get('@fileUpload') 
+      .selectFile('cypress/fixtures/example.json',{action:'drag-drop'})  
+      .should( input=>{
+
+          console.log(input)  
+          expect(input[0].files[0].name).to.eq('example.json')
+
+      })
  /*     
 
       cy.get('@checkboxPhone')  
