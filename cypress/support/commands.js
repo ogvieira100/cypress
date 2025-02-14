@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('fillForm', (data) => {    
+    cy.get('@txtNome').type(data.firstName)
+    cy.get('@txtLastName').type(data.lastName)
+    cy.get('@txtEmail').type(data.email)
+    cy.get('@txtPhone').type(data.phone)
+    cy.get('@selectProduct').select(data.product)
+    cy.get('@txtTextArea').type(data.textArea)
+    cy.get('@radioAtendimento').check(data.radioAtendimento)
+    if(data.checkboxEmail){
+        cy.get('@checkboxEmail').check()
+    }
+    if(data.checkboxPhone){
+        cy.get('@checkboxPhone').check()
+    }
+    if(data.fileUpload){
+        cy.get('@fileUpload').attachFile(data.fileUpload)
+    }
+})   

@@ -3,36 +3,7 @@ before(() => {
   // runs once before all tests
 })
 
-beforeEach(() => {
-  // root-level hook
-  // runs before every test block
-  cy.visit('./src/index.html') 
 
-  /*captura os campos e dá um alias*/
-  cy.get('#firstName').clear()
-    .as('txtNome')  
-  cy.get('#lastName')
-    .as('txtLastName') 
-  cy.get('#email')
-    .as('txtEmail')
-  cy.get('#phone') 
-    .as('txtPhone')
-  cy.get('#product')  
-    .as('selectProduct')
-  cy.get('#open-text-area')
-    .as('txtTextArea') 
-  cy.get('input[type="radio"][name="atendimento-tat"]')  
-    .as('radioAtendimento') 
-  cy.get('#email-checkbox')   
-    .as('checkboxEmail')  
-  cy.get('#phone-checkbox')   
-    .as('checkboxPhone')      
-  cy.get('#file-upload')
-    .as('fileUpload')     
-  cy.get('button[type="submit"]') 
-    .as('btnSubmit')    
-
-})
 
 afterEach(() => {
   // runs after each test block
@@ -46,12 +17,43 @@ after(() => {
 describe('Central de Atendimento ao Cliente TAT', () => {
 
   /*life cicle*/ 
-  before(() => {
-    // runs once before all tests in the block
-  })
+
 
   beforeEach(() => {
-    // runs before each test in the block
+    cy.visit('./src/index.html') 
+
+    /*captura os campos e dá um alias*/
+    cy.get('#firstName').clear()
+      .as('txtNome')  
+    cy.get('#lastName')
+      .as('txtLastName') 
+    cy.get('#email')
+      .as('txtEmail')
+    cy.get('#phone') 
+      .as('txtPhone')
+    cy.get('#product')  
+      .as('selectProduct')
+    cy.get('#open-text-area')
+      .as('txtTextArea') 
+   
+    cy.get('input[type="radio"][name="atendimento-tat"][value="feedback"]')   
+      .as('radioFeedback') 
+    cy.get('input[type="radio"][name="atendimento-tat"][value="elogio"]')   
+      .as('radioElogio') 
+      cy.get('input[type="radio"][name="atendimento-tat"][value="ajuda"]')   
+      .as('radioAjuda') 
+
+
+    cy.get('#email-checkbox')   
+      .as('checkboxEmail')  
+    cy.get('#phone-checkbox')   
+      .as('checkboxPhone')     
+      
+      
+    cy.get('#file-upload')
+      .as('fileUpload')     
+    cy.get('button[type="submit"]') 
+      .as('btnSubmit')    
   })
 
   afterEach(() => {
@@ -63,7 +65,91 @@ describe('Central de Atendimento ao Cliente TAT', () => {
   })
 
 
+  it.skip('verifica o título da aplicação', () => {
+    
+    cy.visit('./src/index.html')  
+    cy.title().should('eq', 'Central de Atendimento ao Cliente TAT')  
+
+  })
+  it('campo email inválido',()=>{
+
+       /*preenche os campos obrigatórios*/
+    cy.get('@txtNome')
+    .type('Osmar')
+    .should('have.value', 'Osmar')  
   
+    cy.get('@txtLastName')
+    .type('Junior')
+    .should('have.value', 'Junior') 
+
+    cy.get('@txtEmail')
+      .type('osmargv100@gmail,com')
+      .should('have.value', 'osmargv100@gmail,com')
+
+    cy.get('@txtTextArea')
+    .type('Teste de preenchimento de formulario')
+    .should('have.value', 'Teste de preenchimento de formulario')
+
+    cy.get('@btnSubmit').click()  
+    cy.get('.error') .should('be.visible') 
+
+  })
+
+
+  it('consegue postar o formulario com os campos basicos',()=>{
+
+    /*preenche os campos obrigatórios*/
+    cy.get('@txtNome')
+    .type('Osmar')
+    .should('have.value', 'Osmar')  
+  
+    cy.get('@txtLastName')
+    .type('Junior')
+    .should('have.value', 'Junior') 
+
+    cy.get('@txtEmail')
+      .type('osmargv100@gmail.com')
+      .should('have.value', 'osmargv100@gmail.com')
+
+    cy.get('@txtTextArea')
+    .type('Teste de preenchimento de formulario')
+    .should('have.value', 'Teste de preenchimento de formulario')
+
+    cy.get('@selectProduct')
+      .select('Blog')
+      .should('have.value', 'blog') 
+     
+    cy.get('@radioFeedback')
+      .check()
+      .should('be.checked') 
+      
+      cy.get('@radioElogio')
+      .check()
+      .should('be.checked') 
+
+      cy.get('@radioAjuda')
+      .check()
+      .should('be.checked') 
+
+      cy.get('@checkboxEmail')  
+      .check()
+      .should('be.checked') 
+      .last()
+      .uncheck()  
+      .should('not.be.checked') 
+
+
+ /*     
+
+      cy.get('@checkboxPhone')  
+      .check()
+      .should('be.checked')  */
+
+    cy.get('@btnSubmit').click()  
+    cy.get('span.success').should('be.visible') 
+
+
+  })
 
   it('preenche o formulario e envia validação de campos Obrigatórios apenas com o campo nome preenchido', () => {
  
@@ -90,10 +176,5 @@ describe('Central de Atendimento ao Cliente TAT', () => {
   
   })
 
-  it('verifica o título da aplicação', () => {
-    
-    cy.visit('./src/index.html')  
-    cy.title().should('eq', 'Central de Atendimento ao Cliente TAT')  
 
-  })
 })
