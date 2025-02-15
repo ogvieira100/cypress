@@ -14,6 +14,21 @@ document.querySelector('#phone-checkbox')
     isPhoneRequired = !isPhoneRequired
   })
 
+document.querySelector('#estado').addEventListener('change', async function() {
+
+  const uf = this.value
+  const municipalities = await findMunicipalities(uf)
+  const municipalityField = document.getElementById('municipios')
+
+  municipalityField.innerHTML = '<option value="">Selecione o município</option>'
+  municipalities.forEach(municipality => {
+    const option = document.createElement('option')
+    option.value = municipality.id
+    option.textContent = municipality['nome-municipio']
+    municipalityField.appendChild(option)
+  })  
+ })
+
 document.querySelector('button[type="submit"]')
   .addEventListener('click', function(event) {
     event.preventDefault()
@@ -59,6 +74,19 @@ function showAndHideErrorMessage() {
   scroll(0,0)
   hideMessageAfterTimeout(errorMessage)
   return
+}
+
+async function findMunicipalities(uf) {
+  try {
+    const response = await fetch(`http://localhost:3000/municipios?uf=${uf}`) 
+    const data = await response.json()
+    return data 
+    
+  } catch (error) {
+    console.log(error)  
+  }
+ 
+  
 }
 
 function hideMessageAfterTimeout(element) {
