@@ -218,5 +218,31 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   })
 
+  it('carrega municipios de são paulo dados mocados', () => {
+
+
+    // Intercepta a requisição AJAX (substitua 'GET' e a URL correta da API)
+    cy.intercept('GET', 'http://localhost:3000/municipios?uf=SP', {
+      statusCode: 200,
+      body: [
+        { id: 1, "nome-municipio": 'João' },
+        { id: 2, "nome-municipio": 'Maria' }
+      ]
+    }).as('carregarGrid');
+    
+    cy.get('@selectEstado')
+    .select('SP')
+    // Aguarda a resposta do AJAX antes de continuar o teste
+    cy.wait('@carregarGrid');
+
+    
+    cy.get('@selectMunicipio')
+    .find('option') 
+    .should('have.length', 3) 
+
+   // expect(true).to.eq(true)
+
+  })
+
 
 })
