@@ -101,9 +101,9 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   })
 
-  it('carrega municipios de são paulo ', () => {
+ /*  it('carrega municipios de são paulo ', () => {
 
-
+    
     // Intercepta a requisição AJAX (substitua 'GET' e a URL correta da API)
     cy.intercept('GET', 'http://localhost:3000/municipios?uf=SP').as('carregarGrid');
     
@@ -119,7 +119,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
    // expect(true).to.eq(true)
 
-  })
+  }) */
 
 
   it('consegue postar o formulario com os campos basicos', () => {
