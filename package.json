@@ -5,6 +5,7 @@
   "main": "src/index.html",
   "scripts": {
     "cy:open": "cypress open",
+    "test:cloud": "cypress run --record",  
     "test": "cypress run",
     "start:api": "json-server --watch ./data/municipios.json --port 3000"
   },
