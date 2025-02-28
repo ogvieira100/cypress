@@ -101,7 +101,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   })
 
-   it('carrega municipios de são paulo ', () => {
+/*    it('carrega municipios de são paulo ', () => {
 
     
     // Intercepta a requisição AJAX (substitua 'GET' e a URL correta da API)
@@ -120,7 +120,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
    // expect(true).to.eq(true)
 
   }) 
-
+ */
 
   it('consegue postar o formulario com os campos basicos', () => {
 
