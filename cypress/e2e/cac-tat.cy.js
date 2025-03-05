@@ -100,7 +100,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.error').should('be.visible')
 
   })
-/* 
+ 
    it('carrega municipios de são paulo ', () => {
 
     // Intercepta a requisição AJAX (substitua 'GET' e a URL correta da API)
@@ -118,7 +118,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
    // expect(true).to.eq(true)
 
-  })  */
+  })  
 
    it('implementação sprint 40', () => {
 
